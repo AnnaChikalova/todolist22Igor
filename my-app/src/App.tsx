@@ -3,6 +3,7 @@ import './App.css';
 import {TaskType, Todolist} from './Todolist';
 import {v1} from 'uuid';
 import {UniversInput} from "./components/UniversInput";
+import {EditableSpan} from "./components/EditableSpan";
 
 export type FilterValuesType = "all" | "active" | "completed";
 type TodolistType = {
@@ -89,6 +90,9 @@ function App() {
         setTasks({...tasks, [todolistId]:tasks[todolistId].map(el=>el.id===taskID
                 ?{...el, title:currentTitle}:el) })
     }
+    function changeTodoTitle(todolistId: string, currentTitleTodo:string){
+         setTodolists(todolists.map(el=>el.id===todolistId? {...el, title:currentTitleTodo}:el))
+    }
 
     return (
         <div className="App">
@@ -117,6 +121,7 @@ function App() {
                         filter={tl.filter}
                         removeTodolist={removeTodolist}
                         changeTask={changeTask}
+                        changeTodoTitle={changeTodoTitle}
 
                     />
                 })
