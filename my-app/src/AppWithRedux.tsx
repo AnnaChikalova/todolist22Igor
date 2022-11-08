@@ -1,7 +1,7 @@
-import React, {useReducer} from 'react';
+import React from 'react';
 import './App.css';
-import {TaskType, TodoList} from './TodoList';
-import {v1} from 'uuid';
+import {TaskType} from './TodoListWithRedux';
+
 import {AddItemForm} from './AddItemForm';
 import ButtonAppBar from "./BasicAppBar";
 import {Container, Grid, Paper} from "@mui/material";
@@ -10,11 +10,11 @@ import {
     changeTodoListFilterAC,
     changeTodoListTitleAC,
     removeTodoListAC,
-    todoListsReducer
 } from "./State/todoLists-reducer";
-import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "./State/tasks-reducer";
+import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./State/tasks-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./State/Store";
+import {TodoListWithRedux} from "./TodoListWithRedux";
 
 export type FilterValuesType = "all" | "active" | "completed";
 
@@ -81,13 +81,11 @@ function AppWithRedux() {
     function changeTaskTitle(todoListId: string, taskId: string, newTitle: string) {
        dispatch(changeTaskTitleAC(todoListId, taskId, newTitle))
     }
-
+    function removeTodoList(todoListId: string) {
+        dispatch(removeTodoListAC(todoListId))
+    }
     function changeTodoListFilter(todoListId: string, value: FilterValuesType) {
         dispatch(changeTodoListFilterAC(todoListId, value))
-    }
-    function removeTodoList(todoListId: string) {
-       dispatch(removeTodoListAC(todoListId))
-
     }
     function changeTodoListTitle(todoListId: string, title: string) {
        dispatch(changeTodoListTitleAC(todoListId, title))
@@ -119,19 +117,19 @@ function AppWithRedux() {
 
                             return <Grid item>
                                 <Paper style={{padding:'10px'}}>
-                            <TodoList
+                            <TodoListWithRedux
                                 key={tl.id}
                                 id={tl.id}
                                 title={tl.title}
-                                tasks={tasksForTodoList}
-                                removeTask={removeTask}
-                                changeTodoListFilter={changeTodoListFilter}
-                                addTask={addTask}
-                                changeTaskStatus={changeTaskStatus}
+                                // tasks={tasksForTodoList}
+                                // removeTask={removeTask}
+                                // changeTodoListFilter={changeTodoListFilter}
+                                // addTask={addTask}
+                                // changeTaskStatus={changeTaskStatus}
                                 filter={tl.filter}
-                                removeTodolist={removeTodoList}
-                                changeTaskTitle={changeTaskTitle}
-                                changeTodolistTitle={changeTodoListTitle}
+                                // removeTodolist={removeTodoList}
+                                // changeTaskTitle={changeTaskTitle}
+                                // changeTodolistTitle={changeTodoListTitle}
                             />
                                 </Paper>
                                 </Grid>
