@@ -11,7 +11,7 @@ type TaskPropsType = {
     id: string
     task: TaskType
 }
-export const Task = ({id, task}: TaskPropsType) => {
+export const Task = React.memo(({id, task}: TaskPropsType) => {
     let dispatch = useDispatch()
     const onClickHandler = () => {
         dispatch(removeTaskAC(id, task.id))
@@ -40,6 +40,6 @@ export const Task = ({id, task}: TaskPropsType) => {
             </IconButton>
         </li>
     );
-};
+});
 
 export default Task;

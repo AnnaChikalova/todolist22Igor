@@ -40,14 +40,14 @@ export function TodoListWithRedux(props: PropsType) {
     }, [dispatch, props.id])
     const onAllClickHandler =useCallback(() =>{
         // props.changeTodoListFilter(props.id, "all");
-        dispatch(changeTodoListFilterAC(props.id, "all"))}, [dispatch, props.id])
+        dispatch(changeTodoListFilterAC(props.id, "all"))}, [])
     const onActiveClickHandler =useCallback(() => {
         // props.changeTodoListFilter(props.id,"active");
-        dispatch(changeTodoListFilterAC(props.id, "active"))}, [dispatch, props.id])
+        dispatch(changeTodoListFilterAC(props.id, "active"))}, [])
     const onCompletedClickHandler =useCallback(() =>{
         // props.changeTodoListFilter(props.id,"completed");
         dispatch(changeTodoListFilterAC(props.id, "completed"))
-    }, [dispatch, props.id])
+    }, [])
 
     if (props.filter === "active") {
         tasks = tasks.filter(t => !t.isDone)
